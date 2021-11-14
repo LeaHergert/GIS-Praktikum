@@ -1,5 +1,5 @@
 # GIS-Praktikum
 
-Aufgabe 2: https://github.com/LeaHergert/GIS-Praktikum/tree/main/A2
+Aufgabe 3: https://github.com/LeaHergert/GIS-Praktikum/tree/main/A3
 
- https://leahergert.github.io/GIS-Praktikum/A2/Startseite.html
+https://leahergert.github.io/GIS-Praktikum/A3/Event-Seite.html
