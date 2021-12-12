@@ -18,7 +18,7 @@ function addEventHandler() {
     let newElement = document.createElement("div"); // Erstelle ein Div-Element
     let deleteButton = document.createElement("button"); // Delete Button erstellen
     deleteButton.textContent = "Löschen"; //Delete-Button mit Inhalt füllen
-    newElement.textContent = interpretValue + "        " + preisValue; //Fülle das Div-Element mit einem Text-Inhalt
+    newElement.textContent = interpretValue + " ; " + preisValue + " € "; //Fülle das Div-Element mit einem Text-Inhalt
     eventtable.appendChild(newElement); //Füge nun noch Das erstellte Div-Element in das Display-Element als Kind-Objekt ein
     /* Da das Display Teil des DOMs ist und wir "newElement" dem Display-Element
     hinzugefügt haben ist das "newElement" nun auch Teil des DOMs und genaugenommen
@@ -34,53 +34,9 @@ function deleteEvent(parentElement) {
     console.log("deleteEvent wurde aufgerufen!"); // Konsolenausgabe zum Testen des Funktionsaufrufes
     eventtable.removeChild(parentElement); //Lösche das als Parameter übergebene Element aus dem Elter-Element "display"
 }
-/*var addEventButton = document.querySelector(".userinput-Button")!;
-var eventToAddTxt = document.querySelector<HTMLInputElement>(".userinput")!;
-var Eventtable = document.querySelector(".Eventtable")!;
-var deleteButton = document.querySelector(".delete");
-
-function addEventHandler(): void{
-  if (eventToAddTxt.value,length > 0){
-    let newListItem = document.createElement("tr");
-  
-
-    let Label = document.createElement("label");
-    Label.appendChild(document.createTextNode(eventToAddTxt.value));
-    Label.className="Label";
-    newListItem.appendChild(Label);
-
-    let newDeleteButton = document.createElement("button");
-    newDeleteButton.appendChild(document.createTextNode("löschen"));
-    newDeleteButton.className="delete";
-    newDeleteButton.addEventListener("click", deleteHandler);
-    newListItem.appendChild(newDeleteButton);
-    Eventtable.appendChild(newListItem);
-    eventToAddTxt.value="";
-
-  }}
-function addEventEnterHandler(event: KeyboardEvent): void{
-  if(event.which==13){
-    addEventHandler();
-  }
-}
-
-//cross off the done item
-function checkboxDoneHandler(event: Event): void {
-  //change an elements class with toggling:
-  //https://stackoverflow.com/questions/195951/change-an-elements-class-with-javascript/196038
-
-  let checkboxElement = event.srcElement!;
-  let parent = checkboxElement.parentElement!;
-  parent!.querySelector(".todo")!.classList.toggle("done");
-}
-function deleteHandler(event: Event): void {
-  event.srcElement!.parentElement!.remove();
-}
-
-for ( let i = 0; i < deleteButton.lenght; i++) {
-  deleteButton[i].addEventHandler("click", deleteHandler);
-}
-
-eventToAddTxt.addEventListener("keypress", addEventEnterHandler);
-addItemButton.addEventListener("click", addEventHandler);*/ 
+const jsonObj1 = JSON.stringify(inputInterpret);
+localStorage.setItem("inputInterpret", jsonObj1);
+const str1 = localStorage.getItem("inputInterpret");
+const parsedObj1 = JSON.parse(str1);
+console.log(parsedObj1);
 //# sourceMappingURL=typescript.js.map
