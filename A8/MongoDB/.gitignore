@@ -1,0 +1,7 @@
+**/logs
+
+**/journal/
+
+*.pdb
+
+**/diagnostic.data/

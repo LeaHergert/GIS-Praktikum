@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB</title>
+    <!--Style-->
+    <link rel="stylesheet" href="CSS/stylesheet.css" />
+    <!--JavaScript-->
+    <script src="JavaScript/script.js" defer></script>
+    <Access-Control-Allow-Origin>
+</head>
+
+
+<body>
+    <header>
+    </header>
+    <main>
+        <form id="eventsFrom">
+            <div class="fieldWrapper">
+                <!--
+                <div class="field">
+                    <label for="id_input">ID</label> <br>
+                    <input id="id_input" name="id_input" type="number" placeholder="ID" disabled>
+                </div>
+                -->
+                <div class="field">
+                    <label for="interpret_input">Interpret</label> <br>
+                    <input id="interpret_input" name="interpret_input" type="text" placeholder="Interpret">
+                </div>
+                <div class="field">
+                    <label for="priceInput">Preis</label><br>
+                    <input id="priceInput" name="priceInput"  type="number" placeholder="Price">
+                </div>
+                <div class="field">
+                    <label for="datetimeLocalInput">Datum und Zeit</label><br>
+                    <input id="datetimeLocalInput" name="datetimeLocalInput" type="datetime-local">
+                </div class="field">
+
+                <button type="submit" id="Button-Add">Add</button>
+                <div>
+
+                </div>
+                <h1>Events Table</h1>
+                <div id="toDoOUT">
+                    <table>
+                        <tr class="toDoElement">
+                            <td class="idOut">ID</td>
+                            <td class="interpretOut">Interpret</td>
+                            <td class="preisOut">Preis</td>
+                            <td class="datumZeitOut">Datum und Zeit</td>
+                            <td class="delete"></td>
+                        </tr>
+
+                    </table>
+                    
+
+                </div>
+            </div>
+        </form>
+
+    </main>
+    <footer>
+        
+    
+      
+    </footer>
+</body>
+
+</html>

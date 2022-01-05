@@ -1,11 +1,8 @@
 # GIS-Praktikum
 
-Aufgabe 5: https://github.com/LeaHergert/GIS-Praktikum/tree/main/A5
+Aufgabe 8: https://github.com/LeaHergert/GIS-Praktikum/tree/main/A8
 
-https://leahergert.github.io/GIS-Praktikum/A5/Events.html
+https://leahergert.github.io/GIS-Praktikum/A8/index.html
 
 
 
-Aufgabe 6: https://github.com/LeaHergert/GIS-Praktikum/tree/main/A6
-
-https://github.com/LeaHergert/GIS-Praktikum/tree/main/A6/nodejs

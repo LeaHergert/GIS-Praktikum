@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "A6",
+			"path": "..\\A6"
+		},
+		{
+			"name": "A5",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "A5"
+	}
+}
