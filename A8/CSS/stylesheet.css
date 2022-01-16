@@ -28,6 +28,7 @@ header{
   
     td{
       font-size: 1.6em;
+      padding: 15px;
     }
     #eventtable div{
       word-spacing: 100px;

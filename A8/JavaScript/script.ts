@@ -9,20 +9,18 @@ namespace Aufgabe8 {
 
     const pfad: string = "/concertEvents";
     const url: string = "http://localhost:3500"
-    const deletePfad: string = "/delete";
+    const deletPfad: string = "/delet";
 
     let idList = new Set();
 
     //load end check if something is in the database
     load();
-
     let testF = document.getElementById("TEST");
     testF.addEventListener("click", test);
 
 
     let todoFrom: HTMLFormElement = <HTMLFormElement>(document.getElementById("eventsFrom"));
     todoFrom.addEventListener("submit", onSubmint);
-
 
 
     async function onSubmint(buttonEvent: Event) {
@@ -33,22 +31,22 @@ namespace Aufgabe8 {
 
         //console.log(buttonEvent.currentTarget);
 
-        let interpret: string = <string>formData.get("interpretInput");
-        let price: number = parseInt(<string>(formData.get("priceInput")));
-        let date: Date = new Date(<string>formData.get("datetimeLocalInput"));
+        let interpret: string = <string>formData.get("interpret_input");
+        let price: number = parseInt(<string>(formData.get("price_input")));
+        let date: Date = new Date(<string>formData.get("datetime_local_input"));
 
         if (interpret === "") {
-            console.error("Interpret fehlt");
+            console.error("interpret  is empty");
             //set inteperet red
             return;
         }
         if (isNaN(price) || price === null) {
-            console.error("Preis fehlt");
+            console.error("price is empty");
             //set inteperet red
             return;
         }
         if (isNaN(Date.parse(date.toString()))) {
-            console.error("Datum fehlt");
+            console.error("date is empty");
             //set inteperet red
             return;
         }
@@ -79,42 +77,36 @@ namespace Aufgabe8 {
 
     async function postForm(event: EventElement) {
         console.log(JSON.stringify(event));
-
-
         await fetch(url + pfad, {
             method: "post",
-            body: JSON.stringify(event)
+            body: JSON.stringify(event),
         });
     }
 
     async function getForm(): Promise<EventElement[]> {
-        console.log("getting the Response vor get Form");
-
+        console.log("getting the Response for get Form");
         let events: EventElement[];
-        let response: Response;
         try {
-            response = await fetch(url + pfad, { method: "get" });
-            console.log(response);
-            console.log(await response.text());
-            events = JSON.parse(await response.text());
+            let response: Response = await fetch(url + pfad, { method: "get" });
+            let text = await response.text()
+            events = JSON.parse(text);
 
         } catch (error) {
+            console.error("server Offline");
             console.log(error);
             throw new Error(error);
         }
 
-        console.log("ENDE?");
         return events;
     }
-    async function deleteGet(id: number) {
+    async function deletGet(id: number) {
         let searchPara: string = "?EventID=" + id;
-        await fetch(url + deletePfad + searchPara, {
-            method: "get"
+        await fetch(url + deletPfad + searchPara, {
+            method: "get",
         });
     }
     function createElement(event: EventElement) {
         let tableWrapper: HTMLElement = document.getElementById("toDoOUT");
-        console.log("found tableWrapper" + tableWrapper);
 
         let table: HTMLElement = document.createElement("table");
         let tbody: HTMLElement = document.createElement("tbody");
@@ -128,7 +120,6 @@ namespace Aufgabe8 {
         cell.forEach(element => {
             row.appendChild(element);
         });
-
         tbody.append(row);
         table.append(tbody);
         tableWrapper.append(table);
@@ -143,41 +134,39 @@ namespace Aufgabe8 {
 
     function addCell(event: EventElement): HTMLTableCellElement[] {
         let cell: HTMLTableCellElement[] = new Array<HTMLTableCellElement>(5);
-
-
-
         for (let i: number = 0; i < 5; i++) {
             cell[i] = <HTMLTableCellElement>document.createElement("td");
         }
-        cell[0].className = "idOut";
-        cell[1].className = "interpretOut";
-        cell[2].className = "preisOut";
-        cell[3].className = "datumZeitOut";
-        cell[4].className = "delete";
+
+        cell[0].className = "id_out";
+        cell[1].className = "interpret_out";
+        cell[2].className = "price_out";
+        cell[3].className = "datetime_out";
+        cell[4].className = "delet";
 
         cell[0].textContent = event.id + "";
         cell[1].textContent = event.interpret + "";
         cell[2].textContent = event.price + "";
-        cell[3].textContent = dateConverter(event.date);
-        cell[4].append(addDeleteButton(event.id));
+        cell[3].textContent = dateConverter(new Date(event.date));
+        cell[4].append(addDeletButton(event.id))
 
         return cell;
     }
 
-    function addDeleteButton(id: number): HTMLElement {
-        let delete: HTMLElement = document.createElement("button");
-        delete.dataset.id = id + "";
-        delete.textContent = "X";
-        delete.className = "deleteButton";
-        delete.setAttribute("type", "button");
-        delete.addEventListener("click", function deleteElement()) {
-            //add functionality
-            console.log("DeleteTableEvent: [" + id + "]");
+    function addDeletButton(id: number): HTMLElement {
+        let delet: HTMLElement = document.createElement("button");
+        delet.dataset.id = id + "";
+        delet.textContent = "X";
+        delet.className = "deletButton";
+        delet.setAttribute("type", "button");
+        delet.addEventListener("click", function deletElement() {
+            
+            console.log("DeletTableEvent: [" + id + "]");
             removeEventElement(id);
             idList.delete(id);
-            deleteGet(id);
-        }
-        return delete;
+            deletGet(id);
+        })
+        return delet;
     }
 
     function dateConverter(date: Date): string {
@@ -188,9 +177,10 @@ namespace Aufgabe8 {
         let events: EventElement[] = new Array<EventElement>();
         try {
             events = await getForm();
+            console.log("events found: " + events);
 
         } catch (error) {
-            console.log("Keine Events gefunden");
+            console.log("no events found");
             return;
         }
         // ony create new events in HTML if ther is something in the DB
@@ -198,8 +188,7 @@ namespace Aufgabe8 {
             createElement(event);
             idList.add(event.id);
         });
-        console.log("Fertig geladen");
-
+        console.log("loading finished");
     }
 
     function removeEventElement(id: number) {
@@ -210,7 +199,7 @@ namespace Aufgabe8 {
 
             if (elemntData === "" + id) {
                 element.remove();
-                console.log("removed Event " + id + " with dataset of" + elemntData);
+                console.log("removed Event " + id + " wiht dataset of" + elemntData);
             }
 
         }
@@ -225,4 +214,3 @@ namespace Aufgabe8 {
         console.log(idList);
     };
     document.getElementById("TESTDIV").hidden = true;
-}
