@@ -9,7 +9,7 @@ namespace Aufgabe8 {
 
     const pfad: string = "/concertEvents";
     const url: string = "http://localhost:3500"
-    const deletPfad: string = "/delet";
+    const loeschPfad: string = "/loesch";
 
     let idList = new Set();
 
@@ -29,29 +29,27 @@ namespace Aufgabe8 {
         let id: number;
         let formData: FormData = new FormData(<HTMLFormElement>buttonEvent.currentTarget);
 
-        //console.log(buttonEvent.currentTarget);
 
         let interpret: string = <string>formData.get("interpret_input");
-        let price: number = parseInt(<string>(formData.get("price_input")));
-        let date: Date = new Date(<string>formData.get("datetime_local_input"));
+        let price: number = parseInt(<string>(formData.get("priceInput")));
+        let date: Date = new Date(<string>formData.get("datetimelocalInput"));
 
         if (interpret === "") {
             console.error("interpret  is empty");
-            //set inteperet red
+            
             return;
         }
-        if (isNaN(price) || price === null) {
+        if (price === null) {
             console.error("price is empty");
-            //set inteperet red
             return;
         }
         if (isNaN(Date.parse(date.toString()))) {
             console.error("date is empty");
-            //set inteperet red
+           
             return;
         }
 
-        id = creatID(); //chekc wiht databes if id is used?
+        id = creatID(); //check with databes if id is used?
 
         let event: EventElement = {
             id,
@@ -99,9 +97,9 @@ namespace Aufgabe8 {
 
         return events;
     }
-    async function deletGet(id: number) {
+    async function loeschGet(id: number) {
         let searchPara: string = "?EventID=" + id;
-        await fetch(url + deletPfad + searchPara, {
+        await fetch(url + loeschPfad + searchPara, {
             method: "get",
         });
     }
@@ -138,35 +136,35 @@ namespace Aufgabe8 {
             cell[i] = <HTMLTableCellElement>document.createElement("td");
         }
 
-        cell[0].className = "id_out";
-        cell[1].className = "interpret_out";
-        cell[2].className = "price_out";
-        cell[3].className = "datetime_out";
-        cell[4].className = "delet";
+        cell[0].className = "idOut";
+        cell[1].className = "interpretOut";
+        cell[2].className = "priceOut";
+        cell[3].className = "datetimeOut";
+        cell[4].className = "delete";
 
         cell[0].textContent = event.id + "";
         cell[1].textContent = event.interpret + "";
         cell[2].textContent = event.price + "";
         cell[3].textContent = dateConverter(new Date(event.date));
-        cell[4].append(addDeletButton(event.id))
+        cell[4].append(addloeschButton(event.id))
 
         return cell;
     }
 
-    function addDeletButton(id: number): HTMLElement {
-        let delet: HTMLElement = document.createElement("button");
-        delet.dataset.id = id + "";
-        delet.textContent = "X";
-        delet.className = "deletButton";
-        delet.setAttribute("type", "button");
-        delet.addEventListener("click", function deletElement() {
+    function addloeschButton(id: number): HTMLElement {
+        let loesch: HTMLElement = document.createElement("button");
+        loesch.dataset.id = id + "";
+        loesch.textContent = "X";
+        loesch.className = "loeschButton";
+        loesch.setAttribute("type", "button");
+        loesch.addEventListener("click", function loeschElement() {
             
-            console.log("DeletTableEvent: [" + id + "]");
+            console.log("loeschTableEvent: [" + id + "]");
             removeEventElement(id);
             idList.delete(id);
-            deletGet(id);
+            loeschGet(id);
         })
-        return delet;
+        return loesch;
     }
 
     function dateConverter(date: Date): string {
@@ -195,11 +193,11 @@ namespace Aufgabe8 {
         let todoElements: HTMLCollection = document.getElementsByClassName("toDoElement")
 
         for (let element of todoElements) {
-            let elemntData: string = ((<HTMLElement>element).dataset.id) + "";
+            let elementData: string = ((<HTMLElement>element).dataset.id) + "";
 
-            if (elemntData === "" + id) {
+            if (elementData === "" + id) {
                 element.remove();
-                console.log("removed Event " + id + " wiht dataset of" + elemntData);
+                console.log("removed Event " + id + " with dataset of" + elementData);
             }
 
         }
@@ -214,3 +212,4 @@ namespace Aufgabe8 {
         console.log(idList);
     };
     document.getElementById("TESTDIV").hidden = true;
+}

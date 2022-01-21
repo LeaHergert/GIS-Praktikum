@@ -96,22 +96,7 @@ const server: http.Server = http.createServer(
 
     });
 
-//search for DB-Content
-/*
-async function dbFind(
-    requestObject: any,
-    response: http.ServerResponse
-) {
-    let result = await mongoClient
-        .db(db)
-        .collection(dbCollection)
-        .find(requestObject)
-        .toArray();
-    // console.log(result, requestObject); // bei Fehlern zum Testen
-    response.setHeader("Content-Type", "application/json");
-    response.write(JSON.stringify(result));
-}
-*/
+
 
 async function dbGet(): Promise<string> {
     let result = await mongoClient
