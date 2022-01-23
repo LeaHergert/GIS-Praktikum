@@ -4,17 +4,17 @@ import * as http from "http";
 import * as mongo from "mongodb";
 
 
-const hostname: string = "127.0.0.1"; // localhost
+const hostname: string = "127.0.0.1"; 
 const port: number = 3500;
 
 const pfad: string = "/concertEvents";
 const pfadDelete: string = pfad + "/delete";
-const mongoUrl: string = "mongodb://localhost:27017"; // locale MongoDB
+const mongoUrl: string = "mongodb://localhost:27017"; 
 
 const dbCollection: string = "eventNode";
 const db: string = "Events"
 
-let mongoClient: mongo.MongoClient = new mongo.MongoClient(mongoUrl); //mongo Client 
+let mongoClient: mongo.MongoClient = new mongo.MongoClient(mongoUrl);  
 
 const server: http.Server = http.createServer(
     async (request: http.IncomingMessage, response: http.ServerResponse) => {
@@ -25,7 +25,7 @@ const server: http.Server = http.createServer(
         console.log( "Pathrequest: " + url.pathname);
         switch (url.pathname) {
             case pfad: {
-                // just pleas dont crash the server!
+                
                 try {
                     console.log("connecting to DB...");
                     const client = await mongoClient.connect();

@@ -3,14 +3,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const http = require("http");
 const mongo = require("mongodb");
-const hostname = "127.0.0.1"; // localhost
+const hostname = "127.0.0.1";
 const port = 3500;
 const pfad = "/concertEvents";
 const pfadDelete = pfad + "/delete";
-const mongoUrl = "mongodb://localhost:27017"; // locale MongoDB
+const mongoUrl = "mongodb://localhost:27017";
 const dbCollection = "eventNode";
 const db = "Events";
-let mongoClient = new mongo.MongoClient(mongoUrl); //mongo Client 
+let mongoClient = new mongo.MongoClient(mongoUrl);
 const server = http.createServer(async (request, response) => {
     response.statusCode = 200;
     response.setHeader("Access-Control-Allow-Origin", "*");
@@ -18,7 +18,6 @@ const server = http.createServer(async (request, response) => {
     console.log("Pathrequest: " + url.pathname);
     switch (url.pathname) {
         case pfad: {
-            // just pleas dont crash the server!
             try {
                 console.log("connecting to DB...");
                 const client = await mongoClient.connect();

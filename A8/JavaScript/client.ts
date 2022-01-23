@@ -13,7 +13,6 @@ namespace Aufgabe8 {
 
     let idList = new Set();
 
-    //load end check if something is in the database
     load();
     let testF = document.getElementById("TEST");
     testF.addEventListener("click", test);

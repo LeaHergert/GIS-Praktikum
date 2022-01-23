@@ -5,7 +5,6 @@ var Aufgabe8;
     const url = "http://localhost:3500";
     const loeschPfad = "/loesch";
     let idList = new Set();
-    //load end check if something is in the database
     load();
     let testF = document.getElementById("TEST");
     testF.addEventListener("click", test);
