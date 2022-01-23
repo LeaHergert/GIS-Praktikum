@@ -43,7 +43,7 @@ main {
   margin: auto;
   margin-top: 250px;
   margin-bottom: 200px;
-  border-radius: 8px;
+  border-radius: 5px;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -60,13 +60,12 @@ form {
 }
 
 .fieldWrapper {
-  border-radius: 8px;
-  box-shadow: 5px 5px 0px 0px rgba(99, 31, 93, 0.619);
+  border-radius: 4px;
   background-color: rgba(208, 37, 194, 0.347);
   padding: 5px;
   margin: 5px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
   border: solid black;
 
 }
@@ -110,7 +109,7 @@ input{
 
 
 tr {
-  height: 50px;
+  height: 70px;
 }
 
 td {
@@ -137,7 +136,7 @@ td {
 table {
   width: 100%;
   border-collapse: separate;
-  font-size: 12pt;
+  font-size: 14pt;
   margin-bottom: 5px;
 }
 
@@ -190,7 +189,7 @@ footer {
   bottom: 45px;
   left: 0;
   right: 0;
-  width: 80%;
+  width: 95%;
   margin: auto;
   padding-bottom: 5px;
 }
@@ -200,28 +199,6 @@ footer #links {
   float: left;
 }
 
-footer #links a {
-  text-decoration: none;
-  color: black;
-  font-size: 12pt;
-  line-height: 1.5;
-  background-color: rgba(208, 37, 193, 0.619);
-  text-align: center;
-  border-radius: 8px;
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  box-shadow: 5px 5px 0px 0px rgba(117, 26, 110, 0.619);
-  display: block;
-  transition: all 0.2s;
-}
-
-footer #links a:hover {
-  color: rgb(0, 0, 0);
-  background-color:rgba(208, 37, 193, 0.619);
-  box-shadow: 7px 7px 0px 0px rgba(117, 26, 110, 0.619);
-  transition: all 0.2s;
-}
 
 
 button {

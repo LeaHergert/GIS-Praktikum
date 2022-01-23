@@ -15,61 +15,60 @@ const server = http.createServer(async (request, response) => {
     response.statusCode = 200;
     response.setHeader("Access-Control-Allow-Origin", "*");
     let url = new URL(request.url || "", `http://${request.headers.host}`);
-    console.log("\x1b[33m", "the rquest path: " + url.pathname);
+    console.log("Pathrequest: " + url.pathname);
     switch (url.pathname) {
         case pfad: {
             // just pleas dont crash the server!
             try {
-                console.log("\x1b[33m", "connecting to DB...");
+                console.log("connecting to DB...");
                 const client = await mongoClient.connect();
                 if (!client) {
-                    console.log("\x1b[33m", "fetshing the Database...");
+                    console.log("fetching the Database...");
                     mongoClient.db(db);
                 }
             }
             catch (error) {
-                console.error("\x1b[31m", "connection time out with DB");
-                console.log("\x1b[0m");
+                console.error("connection time out with DB");
                 response.statusCode = 404;
                 return;
             }
             finally {
                 mongoClient.close();
             }
-            console.log("\x1b[32m", "this is the request: " + request.method);
+            console.log("Request: " + request.method);
             switch (request.method) {
-                case "GET":
+                case "Get":
                     try {
-                        console.log("\x1b[33m", "fetshing the DatabaseCollection...");
+                        console.log("Fetching the DB Collection...");
                         await mongoClient.connect();
                         let text = await dbGet();
                         response.setHeader("Content-Type", "application/json");
                         response.write(text);
-                        console.log("\x1b[33m", "sending to client: " + text);
+                        console.log("Sending: " + text);
                     }
                     catch (error) {
-                        console.error("\x1b[31m", error);
+                        console.error(error);
                     }
                     finally {
                         mongoClient.close();
                     }
                     break;
-                case "POST":
+                case "Post":
                     let input;
                     request.on("data", (data) => {
                         input += data;
                     });
                     try {
                         request.on("end", async () => {
-                            input = input.replace("undefined", ""); // the Stringfy has an undifnied in front?
-                            console.log("\x1b[33m", "Data: " + input);
-                            console.log("\x1b[33m", "sending Data...");
+                            input = input.replace("Is currently undefined", "");
+                            console.log("Data: " + input);
+                            console.log("Sending...");
                             await mongoClient.connect();
                             await dbSet(input);
                         });
                     }
                     catch (error) {
-                        console.error("\x1b[31m", error);
+                        console.error(error);
                     }
                     finally {
                         mongoClient.close();
@@ -80,7 +79,7 @@ const server = http.createServer(async (request, response) => {
         }
         case pfadDelete:
             let eventID = Number(url.searchParams.get("eventID"));
-            console.log("\x1b[33m", "request to delete an elment ID: " + eventID);
+            console.log("Request to delete one elment ID: " + eventID);
             break;
         default:
             response.statusCode = 404;
@@ -92,24 +91,17 @@ async function dbGet() {
         .collection(dbCollection)
         .find()
         .toArray();
-    console.log("\x1b[32m", "got the data");
-    console.log("\x1b[32m", result);
+    console.log("got the data");
+    console.log(result);
     return JSON.stringify(result);
 }
 async function dbSet(event) {
-    console.log("\x1b[33m", "send Data:" + JSON.parse(event) + +" " + (JSON.parse(event).id));
+    console.log("send Data:" + JSON.parse(event) + +" " + (JSON.parse(event).id));
     mongoClient.db(db).collection(dbCollection).insertOne(JSON.parse(event));
-    console.log("\x1b[32m", "Data recived");
+    console.log("Data recived");
 }
 server.listen(port, hostname, () => {
     console.clear();
-    console.log("\x1b[32m", `Server running at http://${hostname}:${port}/`);
+    console.log(`Server running at http://${hostname}:${port}/`);
 });
-/*
-Coler code
-"\x1b[31m" red
-"\x1b[32m" green
-"\x1b[33m" yellow
-
-*/ 
 //# sourceMappingURL=server.js.map

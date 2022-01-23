@@ -30,7 +30,7 @@ var Aufgabe8;
             console.error("date is empty");
             return;
         }
-        id = creatID(); //check with databes if id is used?
+        id = createID(); //check with databes if id is used?
         let event = {
             id,
             interpret,
@@ -40,11 +40,11 @@ var Aufgabe8;
         postForm(event);
         createElement(event);
     }
-    function creatID() {
+    function createID() {
         let id; //-> chek if id is there   
-        id = Math.floor((Math.random() * 1000));
+        id = Math.floor((Math.random() * 100));
         while (idList.has(id)) {
-            id = Math.floor((Math.random() * 1000));
+            id = Math.floor((Math.random() * 100));
         }
         return id;
     }
@@ -159,13 +159,13 @@ var Aufgabe8;
         }
     }
     function test() {
-        idList.add(creatID());
-        idList.add(creatID());
-        idList.add(creatID());
-        idList.add(creatID());
+        idList.add(createID());
+        idList.add(createID());
+        idList.add(createID());
+        idList.add(createID());
         console.log(idList);
     }
     ;
-    document.getElementById("TESTDIV").hidden = true;
+    document.getElementById("TESTID");
 })(Aufgabe8 || (Aufgabe8 = {}));
-//# sourceMappingURL=script.js.map
+//# sourceMappingURL=client.js.map

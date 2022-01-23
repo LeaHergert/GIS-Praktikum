@@ -49,7 +49,7 @@ namespace Aufgabe8 {
             return;
         }
 
-        id = creatID(); //check with databes if id is used?
+        id = createID(); //check with databes if id is used?
 
         let event: EventElement = {
             id,
@@ -61,12 +61,12 @@ namespace Aufgabe8 {
         createElement(event);
     }
 
-    function creatID(): number {
+    function createID(): number {
         let id: number; //-> chek if id is there   
-        id = Math.floor((Math.random() * 1000));
+        id = Math.floor((Math.random() * 100));
 
         while (idList.has(id)) {
-            id = Math.floor((Math.random() * 1000));
+            id = Math.floor((Math.random() * 100));
         }
         return id;
     }
@@ -204,12 +204,12 @@ namespace Aufgabe8 {
     }
 
     function test(): void {
-        idList.add(creatID());
-        idList.add(creatID());
-        idList.add(creatID());
-        idList.add(creatID());
+        idList.add(createID());
+        idList.add(createID());
+        idList.add(createID());
+        idList.add(createID());
 
         console.log(idList);
     };
-    document.getElementById("TESTDIV").hidden = true;
+    document.getElementById("TESTID");
 }
