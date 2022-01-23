@@ -8,7 +8,7 @@ var Aufgabe8;
     load();
     let testF = document.getElementById("TEST");
     testF.addEventListener("click", test);
-    let todoFrom = (document.getElementById("eventsFrom"));
+    let todoFrom = (document.getElementById("eventsForm"));
     todoFrom.addEventListener("submit", onSubmint);
     async function onSubmint(buttonEvent) {
         buttonEvent.preventDefault();
@@ -29,7 +29,7 @@ var Aufgabe8;
             console.error("date is empty");
             return;
         }
-        id = createID(); //check with databes if id is used?
+        id = createID();
         let event = {
             id,
             interpret,
@@ -40,14 +40,13 @@ var Aufgabe8;
         createElement(event);
     }
     function createID() {
-        let id; //-> chek if id is there   
+        let id;
         id = Math.floor((Math.random() * 100));
         while (idList.has(id)) {
             id = Math.floor((Math.random() * 100));
         }
         return id;
     }
-    //fetsh post and get -> create new if id is empty if not edit current
     async function postForm(event) {
         console.log(JSON.stringify(event));
         await fetch(url + pfad, {
@@ -140,7 +139,6 @@ var Aufgabe8;
             console.log("no events found");
             return;
         }
-        // ony create new events in HTML if ther is something in the DB
         events.forEach(event => {
             createElement(event);
             idList.add(event.id);

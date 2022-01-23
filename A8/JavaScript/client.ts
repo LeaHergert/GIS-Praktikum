@@ -18,7 +18,7 @@ namespace Aufgabe8 {
     testF.addEventListener("click", test);
 
 
-    let todoFrom: HTMLFormElement = <HTMLFormElement>(document.getElementById("eventsFrom"));
+    let todoFrom: HTMLFormElement = <HTMLFormElement>(document.getElementById("eventsForm"));
     todoFrom.addEventListener("submit", onSubmint);
 
 
@@ -48,7 +48,7 @@ namespace Aufgabe8 {
             return;
         }
 
-        id = createID(); //check with databes if id is used?
+        id = createID(); 
 
         let event: EventElement = {
             id,
@@ -61,7 +61,7 @@ namespace Aufgabe8 {
     }
 
     function createID(): number {
-        let id: number; //-> chek if id is there   
+        let id: number;
         id = Math.floor((Math.random() * 100));
 
         while (idList.has(id)) {
@@ -70,7 +70,7 @@ namespace Aufgabe8 {
         return id;
     }
 
-    //fetsh post and get -> create new if id is empty if not edit current
+    
 
     async function postForm(event: EventElement) {
         console.log(JSON.stringify(event));
@@ -180,7 +180,7 @@ namespace Aufgabe8 {
             console.log("no events found");
             return;
         }
-        // ony create new events in HTML if ther is something in the DB
+        
         events.forEach(event => {
             createElement(event);
             idList.add(event.id);
