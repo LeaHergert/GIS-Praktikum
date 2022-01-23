@@ -9,8 +9,8 @@ var Aufgabe8;
     let testF = document.getElementById("TEST");
     testF.addEventListener("click", test);
     let todoFrom = (document.getElementById("eventsForm"));
-    todoFrom.addEventListener("submit", onSubmint);
-    async function onSubmint(buttonEvent) {
+    todoFrom.addEventListener("submit", onSubmit);
+    async function onSubmit(buttonEvent) {
         buttonEvent.preventDefault();
         let id;
         let formData = new FormData(buttonEvent.currentTarget);

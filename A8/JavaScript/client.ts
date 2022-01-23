@@ -19,10 +19,10 @@ namespace Aufgabe8 {
 
 
     let todoFrom: HTMLFormElement = <HTMLFormElement>(document.getElementById("eventsForm"));
-    todoFrom.addEventListener("submit", onSubmint);
+    todoFrom.addEventListener("submit", onSubmit);
 
 
-    async function onSubmint(buttonEvent: Event) {
+    async function onSubmit(buttonEvent: Event) {
         buttonEvent.preventDefault();
 
         let id: number;
